@@ -12,7 +12,7 @@
     import_array();
 %}
 
-%apply (int DIM1, int DIM2, long* IN_ARRAY2) {(int maxelements, int MaxM, long *edges)}
+%apply (int DIM1, int DIM2, int* IN_ARRAY2) {(int maxelements, int MaxM, int *edges)}
 %apply (int DIM1, long* IN_ARRAY1) {(int k, long *initial_vertex_ids),
                                     (int m, long *gts),
                                     (int l, long *margin),
