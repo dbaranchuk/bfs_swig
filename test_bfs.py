@@ -2,8 +2,8 @@ import numpy as np
 import bfs
 
 def bfs_test(maxelements, MaxM, nq, margin, nt):
-    initial_vertex_ids = np.array([0]*nq)
-    gts = np.array([99]*nq)
+    initial_vertex_ids = np.array([0]*nq, dtype='int32')
+    gts = np.array([99]*nq, dtype='int32')
 
     edges = -np.ones((maxelements, MaxM)).astype('int32')
     for i in range(maxelements):
