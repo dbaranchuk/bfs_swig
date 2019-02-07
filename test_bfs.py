@@ -10,8 +10,8 @@ def bfs_test(maxelements, MaxM, nq, margin, nt):
         size = np.random.choice(MaxM, size=1)[0] + 1
         edges[i][:size] = np.random.choice(maxelements, size=size)
 
-    distances = -np.ones((nq, maxelements)).astype('int64')
+    distances = -np.ones((nq, maxelements)).astype('int32')
     bfs.bfs(edges, initial_vertex_ids, gts, distances, margin, nt)
     print(distances)
 
-bfs_test(100, 5, 1000000, 1, 4)
+bfs_test(100, 5, 10000, 1, 4)
