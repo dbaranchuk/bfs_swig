@@ -13,11 +13,9 @@
 %}
 
 %apply (int DIM1, int DIM2, int *IN_ARRAY2) {(int maxelements, int MaxM, int *edges)}
-%apply (int DIM1, long* IN_ARRAY1) {(int k, long *initial_vertex_ids),
-                                    (int m, long *gts),
-                                    (int l, long *margin),
-                                    (int t, long *nt)}
-%apply (int DIM1, int DIM2, long* INPLACE_ARRAY2) {(int d1,  int d2, long *distances)}
+%apply (int DIM1, int* IN_ARRAY1) {(int k, int *initial_vertex_ids),
+                                    (int m, int *gts)}
+%apply (int DIM1, int DIM2, int* INPLACE_ARRAY2) {(int d1,  int d2, int *distances)}
 %apply int *INPUT {int *margin, int *nt}
 
 %include "bfs.h"

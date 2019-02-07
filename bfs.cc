@@ -5,9 +5,9 @@
 */
 
 void bfs(int maxelements, int MaxM, int *edges,  // matrix [maxelements, MaxM]
-         int k, long *initial_vertex_ids,         // vector [n_queries]
-         int m, long *gts,                        // vector [n_queries]
-         int d1, int d2, long *distances,         // matrix [n_queries, maxelements]
+         int k, int *initial_vertex_ids,         // vector [n_queries]
+         int m, int *gts,                        // vector [n_queries]
+         int d1, int d2, int *distances,         // matrix [n_queries, maxelements]
          int *margin,                             // number
          int *nt)                                 // number
 {
