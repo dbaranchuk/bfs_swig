@@ -41,7 +41,7 @@ void bfs(int maxelements, int MaxM, int *edges,  // matrix [maxelements, MaxM]
             if (current_depth == min_path_length + *margin)
                 break;
 
-            long *data = edges + vertex->vertex_id * MaxM;
+            int *data = edges + vertex->vertex_id * MaxM;
             for (int i = 0; i < MaxM; i++) {
                 if (*(data + i) == -1)
                     break;
