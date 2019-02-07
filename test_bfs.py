@@ -5,7 +5,7 @@ def bfs_test(maxelements, MaxM, nq, margin, nt):
     initial_vertex_ids = np.array([0]*nq)
     gts = np.array([99]*nq)
 
-    edges = -np.ones((maxelements, MaxM)).astype('int64')
+    edges = -np.ones((maxelements, MaxM)).astype('int32')
     for i in range(maxelements):
         size = np.random.choice(MaxM, size=1)[0] + 1
         edges[i][:size] = np.random.choice(maxelements, size=size)
