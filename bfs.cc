@@ -147,10 +147,10 @@ void bfs_visited_ids(int maxelements, int MaxM, int *edges,              // matr
         vertices[gt].min_path_length = 0;
         visited_ids_set.erase(gt);
         std::cout << "test3" << std::endl;
-        while (!queue.empty() || !visited_ids_set.empty()) {
+        while (!queue.empty()) {
             Vertex *vertex = vertices.data() + queue.front();
-            std::cout << "test_vertex_id " << queue.front() << std::endl;
             queue.pop();
+
             int *data = edges + vertex->vertex_id * MaxM;
             for (int i = 0; i < MaxM; i++) {
                 if (*(data + i) == -1)
@@ -162,16 +162,15 @@ void bfs_visited_ids(int maxelements, int MaxM, int *edges,              // matr
                 if (next_vertex->is_visited)
                     continue;
 
-                std::cout << "test_set1" << std::endl;
                 // if next_vertex_id in visited_ids, rm it
                 visited_ids_set.erase(next_vertex_id);
-                std::cout << "test_set2" << std::endl;
 
                 next_vertex->vertex_id = next_vertex_id;
                 next_vertex->is_visited = true;
                 next_vertex->min_path_length = vertex->min_path_length + 1;
                 queue.push(next_vertex_id);
             }
+            if (visited_ids_set.empty()) break;
         }
         std::cout << "test4" << std::endl;
         assert(!queue.empty() || visited_ids_set.empty());
