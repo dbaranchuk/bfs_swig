@@ -128,7 +128,7 @@ void bfs_visited_ids(int maxelements, int MaxM, int *edges,              // matr
 
     #pragma omp parallel for num_threads(*nt)
     for (int q = 0; q < nq; q++){
-
+        std::cout << "test1" << std::endl;
         std::unordered_set <idx_t> visited_ids_set;
         for (int i = 0; i < max_path_length; i++) {
             int visited_id = *(visited_ids + i);
@@ -136,7 +136,7 @@ void bfs_visited_ids(int maxelements, int MaxM, int *edges,              // matr
                 break;
             visited_ids_set.insert(visited_id);
         }
-
+        std::cout << "test2" << std::endl;
         idx_t gt = *(gts + q);
         std::vector <Vertex> vertices(maxelements);
         std::queue <idx_t> queue;
@@ -171,13 +171,15 @@ void bfs_visited_ids(int maxelements, int MaxM, int *edges,              // matr
                 queue.push(next_vertex_id);
             }
         }
+        std::cout << "test3" << std::endl;
         assert(!queue.empty() || visited_ids_set.empty());
-
+        std::cout << "test4" << std::endl;
         for (int i = 0; i < max_path_length; i++) {
             int visited_id = *(visited_ids + i);
             if (visited_id == -1)
                 break;
             distances[q * max_path_length + i] = vertices[visited_id].min_path_length;
         }
+        std::cout << "test5" << std::endl;
     }
 }

@@ -43,5 +43,5 @@ def bfs_visited_ids_test(maxelements, MaxM, nq, max_path_length, nt):
     print(distances)
 
 
-bfs_test(100, 5, 10000, 1, 1)
-bfs_visited_ids_test(100, 5, 10000, 10, 1)
+bfs_test(100, 5, 100000, 1, 1)
+bfs_visited_ids_test(100, 5, 100000, 10, 1)
