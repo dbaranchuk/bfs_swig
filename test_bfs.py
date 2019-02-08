@@ -38,7 +38,7 @@ def bfs_visited_ids_test(maxelements, MaxM, nq, max_path_length, nt):
     distances = -np.ones((nq, max_path_length)).astype('int32')
 
     t0 = time.time()
-    bfs.visited_ids_bfs(edges, gts, distances, visited_ids, nt)
+    bfs.bfs_visited_ids(edges, gts, distances, visited_ids, nt)
     print('Time: %d' % (time.time() - t0))
     print(distances)
 
