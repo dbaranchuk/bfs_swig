@@ -114,3 +114,70 @@ void bfs(int maxelements, int MaxM, int *edges,  // matrix [maxelements, MaxM]
         }
     }
 }
+
+
+void bfs_visited_ids(int maxelements, int MaxM, int *edges,              // matrix [maxelements, MaxM]
+                     int m, int *gts,                                    // vector [n_queries]
+                     int d1, int d2, int *distances,                     // matrix [n_queries, max_path_length]
+                     int nq, int max_path_length, char *visited_ids,     // matrix [n_queries, max_path_length]
+                     int *nt)                                            // number
+{
+    assert(nq == m == d1);
+    assert(max_path_length == d2);
+    assert(*nt > 0);
+
+    #pragma omp parallel for num_threads(*nt)
+    for (int q = 0; q < nq; q++){
+
+        std::unordered_set <idx_t> visited_ids_set;
+        for (int i = 0; i < max_path_length; i++) {
+            idx_t visited_id = *(visired_ids + i);
+            if (visited_id == -1)
+                break;
+            visited_ids_set.insert(visited_id);
+        }
+
+        idx_t gt = *(gts + q);
+        std::vector <Vertex> vertices(maxelements);
+        std::queue <idx_t> queue;
+        queue.push(gt);
+
+        vertices[gt].vertex_id = gt;
+        vertices[gt].is_visited = true;
+        vertices[gt].min_path_length = 0;
+        visited_ids_set.erase(gt);
+
+        while (!queue.empty() || !visited_ids_set.empty()) {
+            Vertex *vertex = vertices.data() + queue.front();
+            queue.pop();
+
+            int *data = edges + vertex->vertex_id * MaxM;
+            for (int i = 0; i < MaxM; i++) {
+                if (*(data + i) == -1)
+                    break;
+
+                idx_t next_vertex_id = *(data + i);
+                Vertex *next_vertex = vertices.data() + next_vertex_id;
+
+                if (next_vertex->is_visited)
+                    continue;
+
+                // if next_vertex_id in visited_ids, rm it
+                visited_ids_set.erase(next_vertex_id);
+
+                next_vertex->vertex_id = next_vertex_id;
+                next_vertex->is_visited = true;
+                next_vertex->min_path_length = vertex->min_path_length + 1;
+                queue.push(next_vertex_id);
+            }
+        }
+        assert(!queue.empty() || visited_ids_set.empty());
+
+        for (int i = 0; i < max_path_length; i++) {
+            idx_t visited_id = *(visired_ids + i);
+            if (visited_id == -1)
+                break;
+            distances[q * max_path_length + i] = vertices[visited_id].min_path_length;
+        }
+    }
+}
