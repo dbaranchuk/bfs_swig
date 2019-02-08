@@ -131,7 +131,7 @@ void bfs_visited_ids(int maxelements, int MaxM, int *edges,              // matr
 
         std::unordered_set <idx_t> visited_ids_set;
         for (int i = 0; i < max_path_length; i++) {
-            idx_t visited_id = *(visired_ids + i);
+            int visited_id = *(visited_ids + i);
             if (visited_id == -1)
                 break;
             visited_ids_set.insert(visited_id);
@@ -174,7 +174,7 @@ void bfs_visited_ids(int maxelements, int MaxM, int *edges,              // matr
         assert(!queue.empty() || visited_ids_set.empty());
 
         for (int i = 0; i < max_path_length; i++) {
-            idx_t visited_id = *(visired_ids + i);
+            int visited_id = *(visited_ids + i);
             if (visited_id == -1)
                 break;
             distances[q * max_path_length + i] = vertices[visited_id].min_path_length;

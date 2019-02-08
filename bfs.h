@@ -4,7 +4,7 @@
 #include <iostream>
 #include <assert.h>
 #include <omp.h>
-#include <unordered_map>
+#include <unordered_set>
 
 typedef unsigned idx_t;
 
