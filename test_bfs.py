@@ -4,12 +4,14 @@ import time
 
 def bfs_test(maxelements, MaxM, nq, margin, nt):
     initial_vertex_ids = np.array([0]*nq, dtype='int32')
-    gts = np.array([99]*nq, dtype='int32')
 
-    edges = -np.ones((maxelements, MaxM)).astype('int32')
-    for i in range(maxelements):
-        size = np.random.choice(MaxM, size=1)[0] + 1
-        edges[i][:size] = np.random.choice(maxelements, size=size)
+    # Generate random gts
+    gts = np.random.choice(maxelements, size=nq).astype('int32')
+
+    # Generate random regular graph
+    edges = np.random.choice(maxelements, size=(maxelements, MaxM)).astype('int32')
+
+    # Init distances
     distances = -np.ones((nq, maxelements)).astype('int32')
 
     t0 = time.time()
@@ -19,7 +21,6 @@ def bfs_test(maxelements, MaxM, nq, margin, nt):
 
 
 def bfs_visited_ids_test(maxelements, MaxM, nq, max_path_length, nt):
-    np.random.seed(42)
     # Generate random gts
     gts = np.random.choice(maxelements, size=nq).astype('int32')
 
@@ -41,5 +42,6 @@ def bfs_visited_ids_test(maxelements, MaxM, nq, max_path_length, nt):
     print('Time: %f' % (time.time() - t0))
     print(distances)
 
+np.random.seed(42)
 bfs_test(100, 5, 1000000, 5, 1)
-bfs_visited_ids_test(100, 5, 100000, 100, 1)
+bfs_visited_ids_test(100, 5, 1000000, 100, 1)
