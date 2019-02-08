@@ -14,7 +14,7 @@ def bfs_test(maxelements, MaxM, nq, margin, nt):
 
     t0 = time.time()
     bfs.bfs(edges, initial_vertex_ids, gts, distances, margin, nt)
-    print('Time: %d' % (time.time() - t0))
+    print('Time: %f' % (time.time() - t0))
     print(distances)
 
 
@@ -39,7 +39,7 @@ def bfs_visited_ids_test(maxelements, MaxM, nq, max_path_length, nt):
 
     t0 = time.time()
     bfs.bfs_visited_ids(edges, gts, distances, visited_ids, nt)
-    print('Time: %d' % (time.time() - t0))
+    print('Time: %f' % (time.time() - t0))
     print(distances)
 
 
