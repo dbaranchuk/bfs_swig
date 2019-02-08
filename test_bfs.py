@@ -19,20 +19,20 @@ def bfs_test(maxelements, MaxM, nq, margin, nt):
 
 
 def bfs_visited_ids_test(maxelements, MaxM, nq, max_path_length, nt):
+    np.random.seed(42)
     # Generate random gts
     gts = np.random.choice(maxelements, size=nq).astype('int32')
 
     # Generate random graph
-    edges = -np.ones((maxelements, MaxM)).astype('int32')
-    for i in range(maxelements):
-        size = np.random.choice(MaxM, size=1)[0] + 1
-        edges[i][:size] = np.random.choice(maxelements, size=size)
+    #edges = -np.ones((maxelements, MaxM)).astype('int32')
+    edges = np.random.choice(maxelements, size=(maxelements, MaxM))
 
     # Generate random visited ids
-    visited_ids = -np.ones((nq, max_path_length)).astype('int32')
-    for i in range(nq):
-        path_length = np.random.choice(max_path_length, size=1)[0] + 1
-        visited_ids[i][:path_length] = np.random.choice(maxelements, size=path_length)
+    visited_ids = np.arange(nq, maxelements)
+    #visited_ids = -np.ones((nq, max_path_length)).astype('int32')
+    #for i in range(nq):
+    #    path_length = np.random.choice(max_path_length, size=1)[0] + 1
+    #    visited_ids[i][:path_length] = np.random.choice(maxelements, size=path_length)
 
     # Init distances
     distances = -np.ones((nq, max_path_length)).astype('int32')
@@ -42,6 +42,5 @@ def bfs_visited_ids_test(maxelements, MaxM, nq, max_path_length, nt):
     print('Time: %f' % (time.time() - t0))
     print(distances)
 
-
-bfs_test(100, 5, 100000, 1, 1)
-bfs_visited_ids_test(100, 5, 100000, 5, 1)
+# bfs_test(100, 5, 1000, 1, 1)
+bfs_visited_ids_test(100, 5, 10, 5, 1)
