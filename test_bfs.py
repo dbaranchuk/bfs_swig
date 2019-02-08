@@ -23,8 +23,7 @@ def bfs_visited_ids_test(maxelements, MaxM, nq, max_path_length, nt):
     # Generate random gts
     gts = np.random.choice(maxelements, size=nq).astype('int32')
 
-    # Generate random graph
-    #edges = -np.ones((maxelements, MaxM)).astype('int32')
+    # Generate random regular graph
     edges = np.random.choice(maxelements, size=(maxelements, MaxM)).astype('int32')
 
     # Generate random visited ids
@@ -42,5 +41,5 @@ def bfs_visited_ids_test(maxelements, MaxM, nq, max_path_length, nt):
     print('Time: %f' % (time.time() - t0))
     print(distances)
 
-# bfs_test(100, 5, 1000, 1, 1)
-bfs_visited_ids_test(100, 5, 10, 5, 1)
+bfs_test(100, 5, 1000000, 5, 1)
+bfs_visited_ids_test(100, 5, 100000, 100, 1)
