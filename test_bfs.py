@@ -25,14 +25,14 @@ def bfs_visited_ids_test(maxelements, MaxM, nq, max_path_length, nt):
 
     # Generate random graph
     #edges = -np.ones((maxelements, MaxM)).astype('int32')
-    edges = np.random.choice(maxelements, size=(maxelements, MaxM))
+    edges = np.random.choice(maxelements, size=(maxelements, MaxM)).astype('int32')
 
     # Generate random visited ids
-    visited_ids = np.arange(nq, maxelements)
-    #visited_ids = -np.ones((nq, max_path_length)).astype('int32')
-    #for i in range(nq):
-    #    path_length = np.random.choice(max_path_length, size=1)[0] + 1
-    #    visited_ids[i][:path_length] = np.random.choice(maxelements, size=path_length)
+    visited_ids = -np.ones((nq, max_path_length)).astype('int32')
+    for i in range(nq):
+        #path_length = np.random.choice(max_path_length, size=1)[0] + 1
+        #visited_ids[i][:path_length] = np.random.choice(maxelements, size=path_length)
+        visited_ids[i] = np.arange(maxelements)
 
     # Init distances
     distances = -np.ones((nq, max_path_length)).astype('int32')
