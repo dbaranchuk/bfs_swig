@@ -26,5 +26,5 @@ void bfs(int maxelements, int MaxM, int *edges,  // matrix [maxelements, MaxM]
 void bfs_visited_ids(int maxelements, int MaxM, int *edges,              // matrix [maxelements, MaxM]
                      int m, int *gts,                                    // vector [n_queries]
                      int d1, int d2, int *distances,                     // matrix [n_queries, max_path_length]
-                     int nq, int max_path_length, char *visited_ids,     // matrix [n_queries, max_path_length]
+                     int nq, int max_path_length, int *visited_ids,      // matrix [n_queries, max_path_length]
                      int *nt);                                           // number
