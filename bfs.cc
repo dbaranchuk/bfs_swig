@@ -19,7 +19,7 @@ void bfs(int maxelements, int MaxM, int *edges,  // matrix [maxelements, MaxM]
     for (int q = 0; q < k; q++){
         size_t min_path_length = maxelements;
         size_t current_depth = 0;
-        idx_t initial_vertex_id = *(initial_vertex_ids+q), gt = *(gts+q);
+        idx_t initial_vertex_id = initial_vertex_ids[q], gt = gts[q];
 
         std::vector <Vertex> forward_vertices(maxelements);
         std::queue <std::pair<size_t, idx_t>> forward_queue;
@@ -110,7 +110,7 @@ void bfs(int maxelements, int MaxM, int *edges,  // matrix [maxelements, MaxM]
             if (backward_vertices[i].min_path_length +
                 forward_vertices[i].min_path_length > min_path_length + *margin)
                 continue;
-            distances[q*maxelements + i] = backward_vertices[i].min_path_length;
+            distances[q * maxelements + i] = backward_vertices[i].min_path_length;
         }
     }
 }
@@ -130,12 +130,12 @@ void bfs_visited_ids(int maxelements, int MaxM, int *edges,              // matr
     for (int q = 0; q < nq; q++){
         std::unordered_set <idx_t> visited_ids_set;
         for (int i = 0; i < max_path_length; i++) {
-            int visited_id = *(visited_ids + i);
+            int visited_id = visited_ids[q * max_path_length + i];
             if (visited_id == -1)
                 break;
             visited_ids_set.insert(visited_id);
         }
-        idx_t gt = *(gts + q);
+        idx_t gt = gts[q];
         std::vector <Vertex> vertices(maxelements);
         std::queue <idx_t> queue;
         queue.push(gt);
@@ -170,7 +170,7 @@ void bfs_visited_ids(int maxelements, int MaxM, int *edges,              // matr
             if (visited_ids_set.empty()) break;
         }
         for (int i = 0; i < max_path_length; i++) {
-            int visited_id = *(visited_ids + i);
+            int visited_id = visited_ids[q * max_path_length + i];
             if (visited_id == -1)
                 break;
             assert(vertices[visited_id].is_visited);
